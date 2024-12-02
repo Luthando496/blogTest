@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 *{
   margin: 0;
   padding: 0;
@@ -17,7 +19,9 @@ html{
   background-color: rgb(17, 17, 17);
 }
 
-
+.my_navbar{
+  background: #ffffff;
+}
 
 
 .border_top{
