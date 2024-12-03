@@ -2,8 +2,8 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <nav className='my_navbar mx-2 sticky top-0 z-50 py-6 shadow-md shadow-slate-950'>
-        <div className="container mx-10 flex justify-between">
+    <nav className='my_navbar w-full sticky top-0 z-50 py-6 shadow-md shadow-slate-400'>
+        <div className="container px-5 flex justify-between">
             <h1 className="text-3xl font-semibold text-slate-800 tracking-[8px]">ToBlog</h1>
 
             <ul className="flex items-center gap-7">
