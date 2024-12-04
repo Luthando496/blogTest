@@ -32,11 +32,12 @@ const ImagePicker = () => {
     if (image) {
       const formData = new FormData();
       formData.append("file", image);
-      formData.append("upload_preset", "ml_default"); // Replace with your Cloudinary unsigned upload preset
+      formData.append("upload_preset", "my_preset"); // Replace with your Cloudinary unsigned upload preset
+      formData.append("folder", "supabase_blog");
 
       try {
         const response = await axios.post(
-          `https://api.cloudinary.com/v1_1/dezmcxbye/image/upload`,
+          `https://api.cloudinary.com/v1_1/dezmcxbye/image/upload/`,
           formData
         );
         setUploadedImage(response.data.secure_url);

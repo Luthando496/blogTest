@@ -24,7 +24,7 @@ const CreateBlog = () => {
                 <ImagePicker />
             </div>
             
-            <div className="editor_container my-10">
+            <div className="editor_container my-10 container px-4 md:px-14">
               <Editor />
             </div>
         </div>
