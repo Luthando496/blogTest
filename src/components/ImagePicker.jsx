@@ -5,7 +5,7 @@ import { auto } from "@cloudinary/url-gen/actions/resize";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import axios from "axios";
 
-const ImagePicker = () => {
+const ImagePicker = ({setHandleImage,myData}) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState("");
   const [uploadedImage, setUploadedImage] = useState(null); // Store the uploaded image URL
@@ -41,6 +41,7 @@ const ImagePicker = () => {
           formData
         );
         setUploadedImage(response.data.secure_url);
+        setHandleImage(response.data.secure_url);
         console.log("Uploaded image:", response.data);
       } catch (error) {
         console.error("Error uploading image:", error);
@@ -67,14 +68,14 @@ const ImagePicker = () => {
       )}
       <button
         onClick={handleSubmit}
-        className="text-2xl hover:tra font-light w-[200px] p-3 text-white bg-lime-500 rounded-lg"
+        className="text-2xl hover:translate-x-2 font-light tracking-[2px] p-3 my-5 text-white bg-lime-500 rounded-lg"
       >
         Submit Image
       </button>
       {img && (
         <div>
           <h3>Transformed Image:</h3>
-          <AdvancedImage cldImg={img} />
+          <AdvancedImage cldImg={img}  />
         </div>
       )}
     </div>
