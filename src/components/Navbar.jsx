@@ -15,6 +15,9 @@ const Navbar = () => {
                     <Link to="/blog/create" className="text-lg cursor-pointer font-semibold text-slate-900">Create Entry</Link>
                 </li>
                 <li className="hover:border-blue-500 hover:border-b duration-300 ">
+                    <Link to="/sign-in" className="text-lg cursor-pointer font-semibold text-slate-900">Login</Link>
+                </li>
+                <li className="hover:border-blue-500 hover:border-b duration-300 ">
                     <span className="text-lg cursor-pointer font-semibold text-slate-900">Blogs</span>
                 </li>
                 
