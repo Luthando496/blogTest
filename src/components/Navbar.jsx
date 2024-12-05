@@ -5,9 +5,9 @@ const Navbar = () => {
   return (
     <nav className='my_navbar w-full sticky top-0 z-50 py-6 shadow-md shadow-slate-400'>
         <div className="container px-5 flex justify-between">
-            <Link to="/" className="text-3xl font-semibold text-slate-800 tracking-[8px]">ToBlog</Link>
+            <Link to="/" className="md:text-2xl lg:text-3xl text-xl font-semibold text-slate-800 tracking-[8px]">ToBlog</Link>
 
-            <ul className="flex items-center gap-7">
+            <ul className="flex lg:flex-row items-center gap-7">
                 <li className="hover:border-blue-500 hover:border-b duration-300 ">
                     <Link to="/"   pan className="text-lg cursor-pointer font-semibold text-slate-900">Home</Link>
                 </li>

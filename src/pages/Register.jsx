@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { supabase } from '../superclient'
+import ImagePicker from '../components/ImagePicker'
 
 
 
@@ -8,8 +9,11 @@ const Register = () => {
     const [inputData,setInputdata] = useState({
         name:"",
         email:"",
-        password:""
-    })
+        password:"",
+        bio:"",
+    });
+
+    const [image, setImage] = useState('');
 
     const onChangeInputs = (e) =>{
 
@@ -18,10 +22,11 @@ const Register = () => {
             [e.target.name]:e.target.value
         }))
     }
-    const {name,email,password} = inputData;
+    const {name,email,password,bio} = inputData;
 
 
     const submitData =async() =>{
+
 
     try {
       // Register user using Supabase Auth
@@ -34,8 +39,11 @@ const Register = () => {
       console.log(data,"Data from Sign up")
       const { data:postData, error:postError } = await supabase.from('Users').insert([
           {
-              name,email
-            },
+            name:name,
+            email:email,
+            profile_picture:image,
+            bio:bio
+          },
         ]);
         
       console.log(postData,"Data from Sign up")
@@ -54,39 +62,44 @@ const Register = () => {
   return (
     <>
     <Navbar />
-    <section className=' my-14 px-10'>
-        <div className="container mx-auto flex justify-center ">
-            <div className="rounded-lg border-shadow white  bg-zinc-800 flex flex-col gap-8 shadow-lg px-4 py-8 my-10 w-[500px]">
-                <div className="login_container text-center">
-                    <h1 className="text-2xl text-light text-white uppercase tracking-[3px]">register</h1>
-                </div>
-
-                <div className="flex text-center flex-col gap-5">
-                    <label htmlFor="" className="text-xl text-medium text-orange-600">Username :</label>
-                    <input type="text" onChange={onChangeInputs} placeholder='Enter Your Username' value={name} name="name" id="" className="px-10 py-2 rounded-xl focus:outline-none placeholder:text-orange-600 border focus:border-orange-600" />
-                </div>
-
-                <div className="flex flex-col gap-5 text-center">
-                    <label htmlFor="" className="text-xl text-medium text-orange-600">Email :</label>
-                    <input type="text" onChange={onChangeInputs} value={email} placeholder='Enter Your Email' name="email" id="" className="px-10 py-2 rounded-xl focus:outline-none placeholder:text-orange-600  border focus:border-orange-600" />
-                </div>
-
-                <div className="flex flex-col gap-5 text-center">
-                    <label htmlFor="" className="text-xl text-medium text-orange-600">Password :</label>
-                    <input type="text" onChange={onChangeInputs} value={password} placeholder='Enter Your Password' name="password" id="" className="px-10 py-2 rounded-xl focus:outline-none border placeholder:text-orange-600  focus:border-orange-600" />
-                </div>
-                <div className="flex justify-center gap-5">
-                    <button  onClick={submitData} className="bg-white font-bold uppercase tracking-[2px] duration-300 hover:translate-y-1 text-teal-700 hover:-translate-x-[2px] px-6 py-3 rounded-xl shadow-sm shadow-orange-900">Register</button>
-                </div>
-
-
-                {/* <div className="flex justify-center gap-5">
-                    <button className="bg-pink-600 font-bold uppercase tracking-[2px] duration-300 hover:translate-y-1 text-white hover:-translate-x-[2px] px-16 py-3 rounded-3xl shadow-sm shadow-orange-900">Google</button>
-                </div> */}
+    
+    <section className="w-full px-4 lg:px-8 py-12">
+        <div className="container flex-flex-col gap-10 px-2 md:px-8 lg:px-16 bg-slate-900 py-3 rounded-md">
+            {/*  */}
+            <div className="grid lg:grid-cols-2 gap-10 items-start">
+                {/* Single INput */}
+            <div className="flex flex-col gap-6">
+                <label  className='text-2xl font-light tracking-[4px] uppercase text-white'>username :</label>
+                <input type='text' onChange={onChangeInputs} name='name' value={name} placeholder='Enter Your Username' className="py-3 border-zinc-600 px-6 border placeholder:text-zinc-400 focus:outline-none focus:border-teal-500"  />
             </div>
-        </div>    
-    
-    
+            {/* Single input */}
+            <div className="flex flex-col gap-6">
+                <label  className='text-2xl font-light tracking-[4px] uppercase text-white'>email :</label>
+                <input type='email' onChange={onChangeInputs} name='email' value={email} placeholder='Enter Your Username' className="py-3 border-zinc-600 px-6 border placeholder:text-zinc-400 focus:outline-none focus:border-teal-500"  />
+            </div>
+            {/* Single Input */}
+            <div className="flex flex-col gap-6">
+                <label  className='text-2xl font-light tracking-[4px] uppercase text-white'>password :</label>
+                <input type='text' onChange={onChangeInputs} value={password} name='password' placeholder='Enter Your Username' className="py-3 border-zinc-600 px-6 border placeholder:text-zinc-400 focus:outline-none focus:border-teal-500"  />
+            </div>
+            {/*  */}
+            </div>
+            <div className="flex flex-col gap-6 my-4">
+                <label  className='text-2xl font-light tracking-[4px] uppercase text-white'>Bio :</label>
+                <textarea cols={17} type='text' onChange={onChangeInputs} name='bio' value={bio} placeholder='Enter Your Username' className="pb-10 pt-3 border-zinc-600 px-6 border placeholder:text-zinc-400 focus:outline-none focus:border-teal-500"  />
+            </div>
+            <div className="flex flex-col gap-6">
+                <label  className='text-2xl font-light tracking-[4px] uppercase text-white'>Avatar:</label>
+                <ImagePicker setHandleImage={setImage} />
+            </div>
+            {/*  */}
+            <div className="my-8">
+                <button onClick={submitData} className="bg-teal-600 duration-300 tracking-[3px] uppercase text-slate-900  hover:shadow-md -translate-y-2 p-5 hover:translate-y-0 rounded-md hover:shadow-black ">
+                Submit Blog
+                </button>
+            </div>
+            {/*  */}
+        </div>
     </section>
     </>
       

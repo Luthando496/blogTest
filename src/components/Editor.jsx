@@ -22,10 +22,10 @@ const MyEditor = ({setHandleValue,setSubmit})=> {
   
   <ReactQuill theme="snow" modules={{ toolbar: toolbarOptions }} value={defaultValue} onChange={handleChange} />
   <div className="my-8">
-              <button onClick={setSubmit} className="bg-orange-600 duration-300 tracking-[3px] uppercase text-slate-900 border hover:shadow-md p-5 hover:-translate-y-2 rounded-md hover:shadow-black ">
-                Submit Blog
-              </button>
-            </div>
+        <button onClick={setSubmit} className="bg-orange-600 duration-300 tracking-[3px] uppercase text-slate-900 border hover:shadow-md p-5 hover:-translate-y-2 rounded-md hover:shadow-black ">
+          Submit Blog
+        </button>
+    </div>
   </>
   ;
 }

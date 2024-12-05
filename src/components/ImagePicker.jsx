@@ -5,7 +5,7 @@ import { auto } from "@cloudinary/url-gen/actions/resize";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import axios from "axios";
 
-const ImagePicker = ({setHandleImage,myData}) => {
+const ImagePicker = ({setHandleImage}) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState("");
   const [uploadedImage, setUploadedImage] = useState(null); // Store the uploaded image URL
