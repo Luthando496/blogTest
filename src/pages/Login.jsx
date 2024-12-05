@@ -15,12 +15,12 @@ const Login = () => {
 
                 <div className="flex flex-col gap-5">
                     <label htmlFor="" className="text-xl text-medium text-orange-600">Email: </label>
-                    <input type="text" placeholder='Enter Your Email' name="email" id="" className="px-10 py-2 rounded-xl focus:outline-none border focus:border-orange-600" />
+                    <input type="text" placeholder='Enter Your Email' name="email" id="" className="px-10 py-2 rounded-xl placeholder:text-orange-600  focus:outline-none border focus:border-orange-600" />
                 </div>
 
                 <div className="flex flex-col gap-5">
                     <label htmlFor="" className="text-xl text-medium text-orange-600">Password: </label>
-                    <input type="text" placeholder='Enter Your Password' name="password" id="" className="px-10 py-2 rounded-xl focus:outline-none border focus:border-orange-600" />
+                    <input type="text" placeholder='Enter Your Password' name="password" id="" className="px-10 py-2 rounded-xl placeholder:text-orange-600  focus:outline-none border focus:border-orange-600" />
                 </div>
                 <div className="flex justify-center gap-5">
                     <button className="bg-white font-bold uppercase tracking-[2px] duration-300 hover:translate-y-1 text-teal-700 hover:-translate-x-[2px] px-6 py-3 rounded-xl shadow-sm shadow-orange-900">Sign In</button>
@@ -28,7 +28,7 @@ const Login = () => {
 
 
                 <div className="flex justify-center gap-5">
-                    <button className="bg-red-400 font-bold uppercase tracking-[2px] duration-300 hover:translate-y-1 text-white hover:-translate-x-[2px] px-16 py-3 rounded-3xl shadow-sm shadow-orange-900">Google</button>
+                    <button className="bg-pink-600 font-bold uppercase tracking-[2px] duration-300 hover:translate-y-1 text-white hover:-translate-x-[2px] px-16 py-3 rounded-3xl shadow-sm shadow-orange-900">Google</button>
                 </div>
             </div>
         </div>    
