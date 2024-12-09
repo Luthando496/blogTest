@@ -5,9 +5,10 @@ import { auto } from "@cloudinary/url-gen/actions/resize";
 import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import axios from "axios";
 
-const ImagePicker = ({setHandleImage}) => {
+const ImagePicker = ({setHandleImage,location}) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState("");
+  const [loading,setLoading] = useState(false)
   const [uploadedImage, setUploadedImage] = useState(null); // Store the uploaded image URL
 
   const cld = new Cloudinary({
@@ -30,10 +31,12 @@ const ImagePicker = ({setHandleImage}) => {
 
   const handleSubmit = async () => {
     if (image) {
+      setLoading(true)
       const formData = new FormData();
       formData.append("file", image);
       formData.append("upload_preset", "my_preset"); // Replace with your Cloudinary unsigned upload preset
-      formData.append("folder", "supabase_blog");
+      if(location === "user")  formData.append("folder", "supabase_blog_users");
+      if(location === "post")  formData.append("folder", "supabase_blog");
 
       try {
         const response = await axios.post(
@@ -45,17 +48,12 @@ const ImagePicker = ({setHandleImage}) => {
         console.log("Uploaded image:", response.data);
       } catch (error) {
         console.error("Error uploading image:", error);
+      }finally{
+        setLoading(false)
       }
     }
   };
 
-  // Create a transformed image object (if an uploaded image is available)
-  const img = uploadedImage
-    ? cld
-        .image(uploadedImage.split("/").pop().split(".")[0]) // Extract public ID from uploaded URL
-        .quality("auto")
-        .resize(auto().gravity(autoGravity()).width(500).height(500))
-    : null;
 
   return (
     <div className="flex flex-col gap-3">
@@ -63,21 +61,20 @@ const ImagePicker = ({setHandleImage}) => {
       {preview && (
         <div>
           <h3>Preview:</h3>
-          <img src={preview} alt="Selected" style={{ maxWidth: "300px" }} />
+          <img src={preview} alt="Selected" className="min-w-72 max-h-48 object-cover rounded-sm shadow-lg shadow-zinc-500" />
         </div>
       )}
-      <button
+      {loading ? (<button
+        className="text-2xl btn_image hover:translate-x-2 uppercase font-light tracking-[2px] p-3 my-5 text-white bg-blue-500 rounded-lg"
+      >
+        loading
+      </button>) : !uploadedImage &&  <button
         onClick={handleSubmit}
-        className="text-2xl hover:translate-x-2 font-light tracking-[2px] p-3 my-5 text-white bg-lime-500 rounded-lg"
+        className="text-2xl btn_image hover:translate-y-2 duration-300 shadow-xl shadow-slate-300 font-light tracking-[2px] p-3 my-5 text-white bg-lime-500 rounded-lg"
       >
         Submit Image
-      </button>
-      {img && (
-        <div>
-          <h3>Transformed Image:</h3>
-          <AdvancedImage cldImg={img}  />
-        </div>
-      )}
+      </button>}
+      
     </div>
   );
 };

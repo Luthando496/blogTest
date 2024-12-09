@@ -89,3 +89,8 @@ body{
 .navbar_none{
   display: none;
 }
+
+.btn_image{
+  align-self: flex-start;
+  /* justify-self: end; */
+}

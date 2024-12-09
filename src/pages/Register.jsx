@@ -90,7 +90,7 @@ const Register = () => {
             </div>
             <div className="flex flex-col gap-6">
                 <label  className='text-2xl font-light tracking-[4px] uppercase text-white'>Avatar:</label>
-                <ImagePicker setHandleImage={setImage} />
+                <ImagePicker location="user" setHandleImage={setImage} />
             </div>
             {/*  */}
             <div className="my-8">
