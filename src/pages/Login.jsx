@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { supabase } from '../superclient';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 
 
 
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+
+    const user = useSelector(state => state.user)
+    if(user.currentUser){
+        navigate('/')
+    }
+
     const [userInfo,setUser] = useState({
         email:"",
         password:''

@@ -14,12 +14,12 @@ function App() {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch()
 
+
   useEffect(() => {
     const fetchUser = async () => {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-
       setUser(session?.user || null);
       dispatch(loginUser(session?.user))
 
@@ -41,7 +41,7 @@ function App() {
       <Route path="/blog/:id" element={<BlogPage />} />
       <Route path="/blog/create" element={<CreateBlog />} />
       <Route path="/sign-in" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/sign-up" element={<Register />} />
     </Routes>
     
     </>

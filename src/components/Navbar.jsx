@@ -16,7 +16,7 @@ const Navbar = () => {
                 <li className="hover:border-blue-500 hover:border-b duration-300 ">
                     <Link to="/blog/create" className="text-lg cursor-pointer font-semibold text-slate-900">Create Entry</Link>
                 </li>
-                {!user?.currentUser && (
+                {!user?.currentUser &&(
                     <li className="hover:border-blue-500 hover:border-b duration-300 ">
                     <Link to="/sign-in" className="text-lg cursor-pointer font-semibold text-slate-900">Login</Link>
                 </li>

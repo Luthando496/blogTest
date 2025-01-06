@@ -1,13 +1,15 @@
-import { name } from '@cloudinary/url-gen/actions/namedTransformation'
 import {createSlice} from '@reduxjs/toolkit'
 
 
+// let storageUser = localStorage.getItem('user') !== null || undefined ? JSON.parse(localStorage.getItem('user')) : {};
+
 export const UserSlice = createSlice({
     name:'user',
-    initialState:{currentUser:null,},
+    initialState:{currentUser:{},},
     reducers:{
         login:(state,action)=>{
-            state.currentUser = action.payload
+            state.currentUser = action.payload;
+            localStorage.setItem('user', JSON.stringify(action.payload));
         }
     }
 })

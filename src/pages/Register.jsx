@@ -2,10 +2,14 @@ import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { supabase } from '../superclient'
 import ImagePicker from '../components/ImagePicker'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../store/actions/userActions'
 
 
 
 const Register = () => {
+  const dispatch = useDispatch();
+
     const [inputData,setInputdata] = useState({
         name:"",
         email:"",
@@ -36,7 +40,7 @@ const Register = () => {
           data: { name }, // Save additional user metadata
         }
       );
-      console.log(data,"Data from Sign up")
+      dispatch(loginUser(data?.user))
       const { data:postData, error:postError } = await supabase.from('Users').insert([
           {
             name:name,
@@ -45,8 +49,9 @@ const Register = () => {
             bio:bio
           },
         ]);
-        
-      console.log(postData,"Data from Sign up")
+      
+      
+     
       console.log("postError",postError)
 
       if (error) {
